@@ -1,20 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  main.c
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  12/08/2021 04:32:51 PM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Ian Buckley (IMB), 
- *   Organization:  https://github.com/Bardoctorus
- *
- * =====================================================================================
- */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,41 +15,44 @@ int main(int argc,char ** argv)
 
 	char word[100];
 	int number = 0;
+
+	int horizontal=0;
+	int depth=0;
 	while (fgets(str, 100, fp))
 	{
-		int len = strlen(str);
-		printf("len is %d\n", len);
-		for (int x = 0; x < len ; x++)
+		//create pointers to move through the input and assign it to a word
+		char *p = &str[0];
+		char *pw = &word[0];
+		while(*p != ' ')
 		{
-			if (str[x] != ' ')
-			{
-				word[x] = str[x];
-			}
-					
+			*(pw++) = *(p++);
+		}
+		//increment the pointer to move over the whitespace
+		p++;
+		//add terminator to word
+		*pw = '\0';
+		printf("word is: %s\n", word);
+		//THIS WILL ONLY WORK FOR SINGLE DIGIT NUMBERS
+		// TODO fix this ^
+		while (*p != '\n')
+		{
+			number = atoi(p++);
+		}
+		printf("number is: %d\n", number);	
+		
+		// TODO scrcmp the word with the possible inputs
+		// TODO add the numbers to the horiz and depth totals
+		// TODO multiply them to get the answer
 
 
-			
-			
-	//		if(str[x]!=' ' && strcmp(&str[x],"\n") !=0)			
-	//		{
-	//			printf("character %d is: %c\n",x, str[x]);
-	//		}
-	//		else if(str[x]==' ')
-	//		{
-	//			printf("Whitespace detected at %d\n", len);
-	//		}	
-	//		else if(str[x]=='\n')
-	//		{
-	//			printf("newline detected at %d\n", len);
-	//		}			
-	//		else
-	//		{
-	//			printf("Unknown detected\n");
-	//		}
-		} 
+				
 	}
 	
+
 	fclose(fp);
+
+
+
 	return 0;
 }
 
