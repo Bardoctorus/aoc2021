@@ -41,17 +41,18 @@ int main(int argc,char ** argv)
 			}
 			else if(strcmp(&str[x]," ") ==0)
 			{
-				printf("Whitespace detected");
+				printf("Whitespace detected at %d\n", len);
 			}	
 			else if(strcmp(&str[x],"\n") ==0)
 			{
 
-				printf("newline detected");
+				printf("newline detected at %d\n", len);
+
 
 			}			
 			else
 			{
-				printf("Unknown detected");
+				printf("Unknown detected\n");
 			}
 		}
 	}
