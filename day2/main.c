@@ -18,18 +18,45 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 int main(int argc,char ** argv) 
 {
-	if(argc > 1)
+	if(argc < 1)
+		exit(-1);
+	char * filename = argv[1];
+	FILE *fp;
+	fp = fopen(filename, "r");
+	char str[100];
+
+	while (fgets(str, 100, fp))
 	{
-		printf("hello, %s!\n", argv[1]);
+		int len = strlen(str);
+		printf("len is %d\n", len);
+		for (int x = len-1; x >= 0 ; x--)
+		{
+			if(strcmp(&str[x]," ") !=0 && strcmp(&str[x],"\n") !=0)			{
+
+				printf("character %d is: %s",x, &str[x]);
+			}
+			else if(strcmp(&str[x]," ") ==0)
+			{
+				printf("Whitespace detected");
+			}	
+			else if(strcmp(&str[x],"\n") ==0)
+			{
+
+				printf("newline detected");
+
+			}			
+			else
+			{
+				printf("Unknown detected");
+			}
+		}
 	}
-	else
-	{
-		printf("meeeep\n");
-	}
+	
+	fclose(fp);
 	return 0;
 }
 
