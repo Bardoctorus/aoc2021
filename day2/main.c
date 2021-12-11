@@ -29,33 +29,41 @@ int main(int argc,char ** argv)
 	fp = fopen(filename, "r");
 	char str[100];
 
+
+	char word[100];
+	int number = 0;
 	while (fgets(str, 100, fp))
 	{
-		printf("%c\n", str[2]);
-//		int len = strlen(str);
-//		printf("len is %d\n", len);
-//		for (int x = len-1; x >= 0 ; x--)
-//		{
-//			if(strcmp(&str[x]," ") !=0 && strcmp(&str[x],"\n") !=0)			{
-//
-//				printf("character %d is: %s",x, &str[x]);
-//			}
-//			else if(strcmp(&str[x]," ") ==0)
-//			{
-//				printf("Whitespace detected at %d\n", len);
-//			}	
-//			else if(strcmp(&str[x],"\n") ==0)
-//			{
-//
-//				printf("newline detected at %d\n", len);
-//
-//
-//			}			
-//			else
-//			{
-//				printf("Unknown detected\n");
-//			}
-//		}
+		int len = strlen(str);
+		printf("len is %d\n", len);
+		for (int x = 0; x < len ; x++)
+		{
+			if (str[x] != ' ')
+			{
+				word[x] = str[x];
+			}
+					
+
+
+			
+			
+	//		if(str[x]!=' ' && strcmp(&str[x],"\n") !=0)			
+	//		{
+	//			printf("character %d is: %c\n",x, str[x]);
+	//		}
+	//		else if(str[x]==' ')
+	//		{
+	//			printf("Whitespace detected at %d\n", len);
+	//		}	
+	//		else if(str[x]=='\n')
+	//		{
+	//			printf("newline detected at %d\n", len);
+	//		}			
+	//		else
+	//		{
+	//			printf("Unknown detected\n");
+	//		}
+		} 
 	}
 	
 	fclose(fp);
