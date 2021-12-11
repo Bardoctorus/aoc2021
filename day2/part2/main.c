@@ -18,6 +18,7 @@ int main(int argc,char ** argv)
 
 	int horizontal=0;
 	int depth=0;
+	int aim =0;
 	while (fgets(str, 100, fp))
 	{
 		//create pointers to move through the input and assign it to a word
@@ -45,14 +46,16 @@ int main(int argc,char ** argv)
 		if(strcmp(word, "forward") == 0)
 		{
 			horizontal+=number;
+			depth += aim * number;
+
 		}
 		else if (strcmp(word, "down") == 0)
 		{
-			depth+=number;
+			aim+=number;
 		}
 		else if (strcmp(word, "up") == 0)
 		{
-			depth-=number;
+			aim-=number;
 		}
 		else
 		{
