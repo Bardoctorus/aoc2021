@@ -23,51 +23,55 @@ int main(int argc,char ** argv)
 
 	}	
 	char str[100];
-	char *pstr = &str[0];
+	char * pstr = &str[0];
+	char inputs[1001][64];
+	int counter = 0;
 	int ones = 0;
 	int zeros = 0;
 	char gamma[64];
 //	char epsilon[64];
 	while (fgets(str, 100, fp))
 	{
-		//This is all a mess. The principle is sound but the implementation is whack.
-		int len = strlen(str);
-		for (int i=0;i<len;i++)
+		for(int i = 0; i < strlen(str); i ++)
 		{
-			char c = *pstr;
-
-			printf("char c is %c\n",c);
-			int p = ctoi(c);
-			printf("int p is %d\n",p);
-			if(p == 1)
+			if(i == strlen(str)-1)
 			{
-				ones++;
-				printf("one detected, there are now %d ones\n",ones);
-			}	
+				inputs[counter][i] = '\0';
+			}
 			else
 			{
-				zeros++;
-				printf("Zero detected, there are now %d zeros\n", zeros);
+				inputs[counter][i] = *(pstr++);
 			}
-			gamma[i] = (ones>zeros);
-			printf("Gamma[%d] is %d\n",i, gamma[i]);
+	}
+		pstr = &str[0];
+		counter++;
+	}
+
+	for (int k = 0; k < strlen(str)-1; k++)
+	{
+		//TODO Change this shit before the real thing the 12 is hardcoded.
+		for (int l = 0; l < 12; l++)
+		{
+			if((inputs[l][k] - '0') == 0)
+			{
+				zeros++;
+			}	
+			else if((inputs[l][k] - '0') == 1)
+			{
+				ones++;		
+			}
+			printf("inputs[%d][%d] is %d\n",k,l,(inputs[l][k] - '0'));
 			
 		}
-		ones=0;
-		zeros=0;
-		pstr++;
+		int result = (ones>zeros);
+		gamma[k] = (result+'0');
+		printf("ones is %d, zeros is %d, result is %d,Gamma[%d] = %d\n",ones,zeros,result,k, result);
+		ones = 0;
+		zeros = 0;
+		printf("gamma[%d] is %c\n",k,(gamma[k]));
 	}
-	printf("Gamma is: ");
-	for (int i = 0; i < strlen(gamma); i++)
-	{
-		printf("%c ",gamma[i]);
-	}	
-	printf("\n");
-
+	printf("Gamma in full: %s\n\n",&gamma[0]);
 	fclose(fp);
-
-
-
 	return 0;
 }
 
