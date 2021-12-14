@@ -49,7 +49,6 @@ int main(int argc,char ** argv)
 	printf("counter is %d\n",counter);
 	for (int k = 0; k < strlen(str)-1; k++)
 	{
-		//TODO Change this shit before the real thing the 12 is hardcoded.
 		for (int l = 0; l < counter+1; l++)
 		{
 			if((inputs[l][k] - '0') == 0)
