@@ -5,7 +5,7 @@
 //DECS_________________________________
 int ctoi(int i);
 int binToDec(int n);
-void arrayShifter(char * array, int sigBit);
+void arrayShifter(char * arrayIn, char * arrayOut, int sigBit);
 //MAIN___________________________________
 int main(int argc,char ** argv) 
 {
@@ -32,7 +32,8 @@ int main(int argc,char ** argv)
 	int ones = 0;
 	int zeros = 0;
 	char gamma[64];
-	char epsilon[64];
+//
+//char epsilon[64];
 	//INPUT
 	while (fgets(str, 100, fp))
 	{
@@ -60,6 +61,8 @@ int main(int argc,char ** argv)
 //using this result variable we need to walk through the input again, keeping the significant bit entries and discarding others
 //if memory is cheap, we just make a new array each time
 // actually thats whack you just need two new arrays
+	
+		char thing[]="Bingo";
 	for (int k = 0; k < strlen(str)-1; k++)
 	{
 		for (int l = 0; l < counter+1; l++)
@@ -84,23 +87,24 @@ int main(int argc,char ** argv)
 		//  - repeat for [1][x] and happy days? riiight?!? 
 		//  - if it works, do teh exact same thing in reverse for the one that nees a 0. Make a function that can do either as an arg.
 		gamma[k] = (result+'0');
-		epsilon[k] = (!result + '0');
+		//epsilon[k] = (!result + '0');
+		arrayShifter(gamma, thing, result);
 //		printf("ones is %d, zeros is %d, result is %d,Gamma[%d] = %d\n",ones,zeros,result,k, result);
 		ones = 0;
 		zeros = 0;
 //		printf("gamma[%d] is %c\n",k,(gamma[k]));
 	}
-	gamma[strlen(str)-1] = '\0';
-	epsilon[strlen(str)-1] = '\0';
-	printf("Gamma in full:START %s END\n\n",gamma);
-	printf("Epsilon in full:START %s END\n\n",epsilon);
-	char *endptr;
-	long int gamInt =strtol(gamma,&endptr,2);
-	long int epInt = strtol(epsilon,&endptr, 2);
-	printf("gamint = %ld, epint %ld\n", gamInt,epInt);
-//	printf("Gamma bintodec:  %d, Epsilon bin2dec: %d\n",binToDec(gamInt),binToDec(epInt));
-	int power =gamInt * epInt;
-	printf("Final power reading: %d\n",power);
+//	gamma[strlen(str)-1] = '\0';
+//	epsilon[strlen(str)-1] = '\0';
+//	printf("Gamma in full:START %s END\n\n",gamma);
+//	printf("Epsilon in full:START %s END\n\n",epsilon);
+//	char *endptr;
+//	long int gamInt =strtol(gamma,&endptr,2);
+//	long int epInt = strtol(epsilon,&endptr, 2);
+//	printf("gamint = %ld, epint %ld\n", gamInt,epInt);
+////	printf("Gamma bintodec:  %d, Epsilon bin2dec: %d\n",binToDec(gamInt),binToDec(epInt));
+//	int power =gamInt * epInt;
+//	printf("Final power reading: %d\n",power);
 	fclose(fp);
 	return 0;
 }
@@ -127,4 +131,13 @@ int binToDec(int n)
 		base  = base * 2;
 	}
 	return dec_val;
+}
+void arrayShifter(char* arrayIn, char * arrayOut, int sigBit)
+{
+	// This shit here. It:
+	//  - 1. Takes an array to work through
+	printf("This is arrayIn: %s, this is arrayOut %s, this is sigBit:%d\n",arrayIn,arrayOut,sigBit);
+	//  - 2. Goes through the first bits, sorting by the sigBit
+	//  - 3. puts those in the out arrayOut
+	//  - 4. Goes back to 1 but with the Arrayout as the input array, stops when  
 }
