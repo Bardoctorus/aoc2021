@@ -5,6 +5,7 @@
 //DECS_________________________________
 int ctoi(int i);
 int binToDec(int n);
+void arrayShifter(char * array, int sigBit);
 //MAIN___________________________________
 int main(int argc,char ** argv) 
 {
@@ -14,7 +15,7 @@ int main(int argc,char ** argv)
 		printf("Need a filename arg\n");
 		exit(-1);
 	}
-	//DECLARATIONS
+	//VARS
 	char * filename = argv[1];
 	FILE *fp;
 	fp = fopen(filename, "r");
@@ -58,8 +59,7 @@ int main(int argc,char ** argv)
 //once we count them we get a result variable.
 //using this result variable we need to walk through the input again, keeping the significant bit entries and discarding others
 //if memory is cheap, we just make a new array each time
-//if it isn't, we need to do pointer fuckery and keep track of where everything is ourselves which sounds like hell...
-//... cool lets do the second one.
+// actually thats whack you just need two new arrays
 	for (int k = 0; k < strlen(str)-1; k++)
 	{
 		for (int l = 0; l < counter+1; l++)
